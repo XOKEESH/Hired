@@ -1,8 +1,12 @@
 from django.db import models
+from django.urls import reverse
+from datetime import date
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 class App(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=200)
     company_name = models.CharField(max_length=200)
     application_date = models.DateField(auto_now_add=True)
@@ -36,3 +40,6 @@ class App(models.Model):
 
     def __str__(self):
         return f'{self.job_title} at {self.company_name}'
+    def get_absolute_url(self):
+        return reverse('app-detail', kwargs={'app_id': self.id})
+    

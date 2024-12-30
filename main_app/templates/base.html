@@ -21,8 +21,21 @@
       </div>
       <nav>
         <ul>
-          <li><a href="/applications">All Applications</a></li>
-          <li><a href="/about">About</a></li>
+        {% if user.is_authenticated %}  
+          <li><a href="{% url 'app-index' %}">All Applications</a></li>
+          <li><a href="{% url 'app-create' %}">Track New Application</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li>
+            <form id="logout-form" method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit">Sign out</button>
+            </form>
+          </li>
+        {% else %}
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'home' %}">Sign In</a></li>
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+        {% endif %}
         </ul>
       </nav>
     </header>

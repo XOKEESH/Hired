@@ -12,13 +12,15 @@
 <section class="card-container">
   {% for app in apps %}
     <div class="card">
-      <div class="card-content">
-        <div class="card-img-container">
+      <a href="{% url 'app-detail' app.id %}">
+        <div class="card-content">
+          <div class="card-img-container">
+          </div>
+          <h2 class="card-title">{{ app.job_title }} at {{ app.company_name }}</h2>
+          <p>Applied on {{ app.application_date }}</p>
+          <p><small>Description: {{ app.job_description }}</small></p>
         </div>
-        <h2 class="card-title">{{ app.title }} at {{ app.company }}</h2>
-        <p>Applied on {{ app.date }}</p>
-        <p><small>Description:{{ app.description }}</small></p>
-      </div>
+      </a>  
     </div>
   {% endfor %}
 </section>
