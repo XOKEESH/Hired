@@ -1,8 +1,8 @@
-{% extends 'base.html' %} 
-{% load static %} 
+{% extends 'base.html' %}
+{% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/apps/app-detail.css' %}" />
-{% endblock %} 
+{% endblock %}
 {% block content %}
 <section class="cat-container">
   <div class="cat-img">
@@ -19,4 +19,206 @@
     </div>
   </div>
 </section>
+
+<!-- Add Interview -->
+<div class="feedings-toy-container">
+  <section class="feedings">
+    <div class="subsection-title">
+      <h2>Interviews</h2>
+    </div>
+    <h3>Add an Interview</h3>
+    <form action="{% url 'add-interview' app.id %}" method="post" class="subsection-content" autocomplete="off">
+      {% csrf_token %}
+      {{ interview_form.as_p }}
+      <button type="submit" class="btn submit">Add Interview</button>
+    </form>
+    <h3>Past Interviews</h3>
+    {% if app.interview_set.all.count %}
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for interview in app.interview_set.all %}
+          <tr>
+            <td>{{ interview.date }}</td>
+            <td>{{ interview.details }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="subsection-content">
+        <p>⚠️ No interviews have been added yet!</p>
+      </div>
+    {% endif %}
+  </section>
+</div>
+
+<!-- Add Note -->
+<div class="feedings-toy-container">
+  <section class="feedings">
+    <div class="subsection-title">
+      <h2>Notes</h2>
+    </div>
+    <h3>Add a Note</h3>
+    <form action="{% url 'add-note' app.id %}" method="post" class="subsection-content" autocomplete="off">
+      {% csrf_token %}
+      {{ note_form.as_p }}
+      <button type="submit" class="btn submit">Add Note</button>
+    </form>
+    <h3>Past Notes</h3>
+    {% if app.note_set.all.count %}
+      <ul>
+        {% for note in app.note_set.all %}
+        <li>{{ note.content }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="subsection-content">
+        <p>⚠️ No notes have been added yet!</p>
+      </div>
+    {% endif %}
+  </section>
+</div>
+
+<!-- Add Task -->
+<div class="feedings-toy-container">
+  <section class="feedings">
+    <div class="subsection-title">
+      <h2>Tasks</h2>
+    </div>
+    <h3>Add a Task</h3>
+    <form action="{% url 'add-task' app.id %}" method="post" class="subsection-content" autocomplete="off">
+      {% csrf_token %}
+      {{ task_form.as_p }}
+      <button type="submit" class="btn submit">Add Task</button>
+    </form>
+    <h3>Past Tasks</h3>
+    {% if app.task_set.all.count %}
+      <ul>
+        {% for task in app.task_set.all %}
+        <li>{{ task.details }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="subsection-content">
+        <p>⚠️ No tasks have been added yet!</p>
+      </div>
+    {% endif %}
+  </section>
+</div>
+
+<!-- Follow-Ups -->
+<div class="feedings-toy-container">
+  <section class="feedings">
+    <div class="subsection-title">
+      <h2>Follow-Ups</h2>
+    </div>
+    <h3>Add a Follow-Up</h3>
+    <form action="{% url 'add-followUp' app.id %}" method="post" class="subsection-content" autocomplete="off">
+      {% csrf_token %}
+      {{ followup_form.as_p }}
+      <button type="submit" class="btn submit">Add Follow-Up</button>
+    </form>
+    <h3>Past Follow-Ups</h3>
+    {% if app.followup_set.all.count %}
+      <ul>
+        {% for followup in app.followup_set.all %}
+        <li>{{ followup.details }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="subsection-content">
+        <p>⚠️ No follow-ups have been added yet!</p>
+      </div>
+    {% endif %}
+  </section>
+</div>
+
+<!-- Contacts -->
+<div class="feedings-toy-container">
+  <section class="feedings">
+    <div class="subsection-title">
+      <h2>Contacts</h2>
+    </div>
+    <h3>Add a Contact</h3>
+    <form action="{% url 'add-contact' app.id %}" method="post" class="subsection-content" autocomplete="off">
+      {% csrf_token %}
+      {{ contact_form.as_p }}
+      <button type="submit" class="btn submit">Add Contact</button>
+    </form>
+    <h3>Past Contacts</h3>
+    {% if app.contact_set.all.count %}
+      <ul>
+        {% for contact in app.contact_set.all %}
+        <li>{{ contact.name }} - {{ contact.details }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="subsection-content">
+        <p>⚠️ No contacts have been added yet!</p>
+      </div>
+    {% endif %}
+  </section>
+</div>
+
+<!-- Feedback -->
+<div class="feedings-toy-container">
+  <section class="feedings">
+    <div class="subsection-title">
+      <h2>Feedback</h2>
+    </div>
+    <h3>Add Feedback</h3>
+    <form action="{% url 'add-feedback' app.id %}" method="post" class="subsection-content" autocomplete="off">
+      {% csrf_token %}
+      {{ feedback_form.as_p }}
+      <button type="submit" class="btn submit">Add Feedback</button>
+    </form>
+    <h3>Past Feedback</h3>
+    {% if app.feedback_set.all.count %}
+      <ul>
+        {% for feedback in app.feedback_set.all %}
+        <li>{{ feedback.content }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="subsection-content">
+        <p>⚠️ No feedback has been added yet!</p>
+      </div>
+    {% endif %}
+  </section>
+</div>
+
+<!-- Offers -->
+<div class="feedings-toy-container">
+  <section class="feedings">
+    <div class="subsection-title">
+      <h2>Offers</h2>
+    </div>
+    <h3>Add an Offer</h3>
+    <form action="{% url 'add-offer' app.id %}" method="post" class="subsection-content" autocomplete="off">
+      {% csrf_token %}
+      {{ offer_form.as_p }}
+      <button type="submit" class="btn submit">Add Offer</button>
+    </form>
+    <h3>Past Offers</h3>
+    {% if app.offer_set.all.count %}
+      <ul>
+        {% for offer in app.offer_set.all %}
+        <li>{{ offer.details }} - {{ offer.date }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="subsection-content">
+        <p>⚠️ No offers have been added yet!</p>
+      </div>
+    {% endif %}
+  </section>
+</div>
+
 {% endblock %}
+
