@@ -9,6 +9,62 @@
   <h1>Application List</h1>
 </section>
 
+<!-- Filter Form -->
+<section class="filter-form">
+  <form method="get" action=".">
+    <div class="filter-group">
+      <label for="job_title">Job Title:</label>
+      <input type="text" id="job_title" name="job_title" value="{{ request.GET.job_title }}">
+    </div>
+    <div class="filter-group">
+      <label for="company_name">Company Name:</label>
+      <input type="text" id="company_name" name="company_name" value="{{ request.GET.company_name }}">
+    </div>
+    <div class="filter-group">
+      <label for="status">Status:</label>
+      <select id="status" name="status">
+        <option value="">--Select Status--</option>
+        <option value="applied" {% if request.GET.status == 'applied' %}selected{% endif %}>Applied</option>
+        <option value="interview" {% if request.GET.status == 'interview' %}selected{% endif %}>Interview</option>
+        <option value="offer" {% if request.GET.status == 'offer' %}selected{% endif %}>Offer</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="start_date">Start Date:</label>
+      <input type="date" id="start_date" name="start_date" value="{{ request.GET.start_date }}">
+    </div>
+    <div class="filter-group">
+      <label for="end_date">End Date:</label>
+      <input type="date" id="end_date" name="end_date" value="{{ request.GET.end_date }}">
+    </div>
+    <div class="filter-group">
+      <label for="interview_status">Interview Status:</label>
+      <select id="interview_status" name="interview_status">
+        <option value="">--Select Interview Status--</option>
+        <option value="Scheduled" {% if request.GET.interview_status == 'Scheduled' %}selected{% endif %}>Scheduled</option>
+        <option value="Completed" {% if request.GET.interview_status == 'Completed' %}selected{% endif %}>Completed</option>
+        <option value="No Interview" {% if request.GET.interview_status == 'No Interview' %}selected{% endif %}>No Interview</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" value="{{ request.GET.location }}">
+    </div>
+    <div class="filter-group">
+      <label for="job_type">Job Type:</label>
+      <select id="job_type" name="job_type">
+        <option value="">--Select Job Type--</option>
+        <option value="full-time" {% if request.GET.job_type == 'full-time' %}selected{% endif %}>Full-Time</option>
+        <option value="part-time" {% if request.GET.job_type == 'part-time' %}selected{% endif %}>Part-Time</option>
+        <option value="contract" {% if request.GET.job_type == 'contract' %}selected{% endif %}>Contract</option>
+        <option value="internship" {% if request.GET.job_type == 'internship' %}selected{% endif %}>Internship</option>
+      </select>
+    </div>
+    <button type="submit" class="filter-btn">Filter</button>
+    <a href="." class="reset-btn">Reset</a>
+  </form>
+</section>
+
 <section class="card-container">
   {% for app in apps %}
     <div class="card">

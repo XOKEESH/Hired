@@ -19,6 +19,37 @@ def about(request):
 @login_required
 def app_index(request):
     apps = App.objects.filter(user=request.user)
+
+    # Get filter inputs from the request
+    job_title = request.GET.get('job_title', '')
+    company_name = request.GET.get('company_name', '')
+    status = request.GET.get('status', '')
+    start_date = request.GET.get('start_date', None)
+    end_date = request.GET.get('end_date', None)
+    interview_status = request.GET.get('interview_status', '')
+    location = request.GET.get('location', '')
+    job_type = request.GET.get('job_type', '')
+
+    # Apply filters
+    if job_title:
+        apps = apps.filter(job_title__icontains=job_title)
+    if company_name:
+        apps = apps.filter(company_name__icontains=company_name)
+    if status:
+        apps = apps.filter(status=status)
+    if start_date and end_date:
+        apps = apps.filter(application_date__range=(start_date, end_date))
+    if interview_status == 'Scheduled':
+        apps = apps.filter(interviews__isnull=False)
+    elif interview_status == 'Completed':
+        apps = apps.filter(interviews__date__lte=timezone.now())
+    elif interview_status == 'No Interview':
+        apps = apps.filter(interviews__isnull=True)
+    if location:
+        apps = apps.filter(location__icontains=location)
+    if job_type:
+        apps = apps.filter(job_type=job_type)
+        
     return render(request, 'apps/index.html', {'apps': apps})
 
 @login_required

@@ -76,6 +76,27 @@ class App(models.Model):
         choices=STATUS_CHOICES,
         default=PENDING,
     )
+
+    location = models.CharField(max_length=200, blank=True, null=True)
+    
+    FULL_TIME = 'Full-Time'
+    PART_TIME = 'Part-Time'
+    CONTRACT = 'Contract'
+    INTERNSHIP = 'Internship'
+    
+    JOB_TYPE_CHOICES = [
+        (FULL_TIME, 'Full-Time'),
+        (PART_TIME, 'Part-Time'),
+        (CONTRACT, 'Contract'),
+        (INTERNSHIP, 'Internship'),
+    ]
+    job_type = models.CharField(
+        max_length=20,
+        choices=JOB_TYPE_CHOICES,
+        blank=True,
+        null=True,
+    )
+    
     job_link = models.URLField(blank=True, null=True)
     job_description = models.TextField(blank=True, null=True)
     attachments = models.FileField(upload_to='attachments/', blank=True, null=True)
