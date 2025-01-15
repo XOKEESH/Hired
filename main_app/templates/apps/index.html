@@ -1,16 +1,19 @@
 {% extends 'base.html' %} 
 {% load static %} 
+
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/apps/app-index.css' %}"/>
 {% endblock %} 
-{% block content %}
 
+{% block content %}
 <section class="page-header">
   <h1>Application List</h1>
 </section>
 
 <!-- Filter Form -->
-<section class="filter-form">
+<button id="toggle-filter" class="toggle-filter-btn">Filter</button>
+
+<section class="filter-form hidden">
   <form method="get" action=".">
     <div class="filter-group">
       <label for="job_title">Job Title:</label>
@@ -81,4 +84,15 @@
   {% endfor %}
 </section>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('toggle-filter')
+    const filterForm = document.querySelector('.filter-form')
+
+    toggleButton.addEventListener('click', () => {
+      filterForm.classList.toggle('hidden')
+    })
+  })
+</script>
 {% endblock %}
+

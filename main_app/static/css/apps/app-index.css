@@ -37,3 +37,19 @@
     font-size: var(--font-reg);
   }
   
+  .hidden {
+    display: none;
+  }
+  
+  .toggle-filter-btn {
+    background-color: #5c88aa;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .toggle-filter-btn:hover {
+    background-color: #5c88aa;
+  }  
