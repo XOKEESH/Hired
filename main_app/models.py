@@ -110,7 +110,7 @@ class App(models.Model):
         return f'{self.job_title} at {self.company_name}'
 
     def get_absolute_url(self):
-        return reverse('app-detail', kwargs={'pk': self.id})
+        return reverse('app-detail', kwargs={'app_id': self.id})
 
 class Interview(models.Model):
     app = models.ForeignKey(App, on_delete=models.CASCADE, related_name='interviews')
