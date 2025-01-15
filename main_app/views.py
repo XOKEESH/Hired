@@ -149,11 +149,13 @@ class AppCreate(LoginRequiredMixin, CreateView):
     model = App
     fields = [
         'job_title', 
-        'company_name', 
-        'status', 
+        'company_name',
+        'application_date', 
+        'status',
+        'location',
+        'job_type', 
         'job_link', 
-        'job_description', 
-        'notes', 
+        'job_description',  
         'attachments'
     ]
     def form_valid(self, form):
@@ -164,7 +166,7 @@ class AppCreate(LoginRequiredMixin, CreateView):
  
 class AppUpdate(LoginRequiredMixin, UpdateView):
     model = App
-    fields = ['job_link', 'job_description', 'notes', 'attachments']
+    fields = ['status', 'location', 'job_type', 'job_link', 'job_description', 'attachments']
 
 class AppDelete(LoginRequiredMixin, DeleteView):
     model = App
