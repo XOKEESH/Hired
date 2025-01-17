@@ -49,7 +49,7 @@
       <button type="submit" class="btn submit">Add Interview</button>
     </form>
     <h3>Past Interviews</h3>
-    {% if app.interview_set.all.count %}
+    {% if app.interviews.all.count %}
       <table>
         <thead>
           <tr>
@@ -58,7 +58,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for interview in app.interview_set.all %}
+          {% for interview in app.interviews.all %}
           <tr>
             <td>{{ interview.date }}</td>
             <td>{{ interview.details }}</td>
