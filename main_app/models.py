@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from django.utils import timezone
 timezone.now
+from django.utils.timezone import now
+
 
 
 # Create your models here.
@@ -126,9 +128,9 @@ class Interview(models.Model):
 
 class Note(models.Model):
     app = models.ForeignKey(App, on_delete=models.CASCADE, related_name='notes')
-    date = models.DateTimeField(default=timezone.now)
     content = models.TextField()
-    created_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    date = models.DateField(null=True)
 
     def __str__(self):
         return f'Note for {self.app} on {self.created_at}'

@@ -3,6 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import App, Interview, Note, Task, FollowUp, Contact, Feedback, Offer
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
+from django.utils.timezone import now
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -88,6 +89,7 @@ def add_note(request, app_id):
     if form.is_valid():
         new_note = form.save(commit=False)
         new_note.app_id = app_id
+        new_note.date = new_note.date or timezone.now().date()
         new_note.save()
     return redirect('app-detail', app_id=app_id)
 

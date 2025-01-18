@@ -18,7 +18,7 @@ class InterviewForm(forms.ModelForm):
 class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
-        fields = [ 'content']
+        fields = ['date', 'content']
 
 class TaskForm(forms.ModelForm):
     class Meta:

@@ -87,9 +87,9 @@
       <button type="submit" class="btn submit">Add Note</button>
     </form>
     <h3>Past Notes</h3>
-    {% if app.note_set.all.count %}
+    {% if app.notes.exists %}
       <ul>
-        {% for note in app.note_set.all %}
+        {% for note in app.notes.all %}
         <li>{{ note.content }}</li>
         {% endfor %}
       </ul>
